@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Fake Job Detector</title>
+
+<style>
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #717781, #7a97c9);
+    color: white;
+    text-align: center;
+}
+
+/* Navbar */
+.navbar {
+    padding: 15px;
+    font-size: 22px;
+    font-weight: bold;
+    background: rgba(0,0,0,0.3);
+}
+
+/* Main container */
+.container {
+    margin-top: 80px;
+}
+
+/* Title */
+h1 {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 18px;
+    color: #ddd;
+}
+
+/* Input box */
+input {
+    width: 60%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+/* Button */
+button {
+    margin-top: 20px;
+    padding: 12px 25px;
+    background: #00c6ff;
+    border: none;
+    border-radius: 8px;
+    color: black;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #00a2cc;
+}
+
+/* Features */
+.features {
+    margin-top: 80px;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.card {
+    background: rgba(255,255,255,0.1);
+    padding: 20px;
+    border-radius: 12px;
+    width: 250px;
+}
+
+/* 🔥 Loading Section */
+#loading {
+    display: none;
+    margin-top: 20px;
+}
+
+/* Spinner */
+.spinner {
+    border: 5px solid #ccc;
+    border-top: 5px solid #00d4ff;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 10px auto;
+}
+
+/* Animation */
+@keyframes spin {
+    100% { transform: rotate(360deg); }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="navbar">
+    Fake Job Detector 🚀
+</div>
+
+<div class="container">
+
+    <h1>Detect Fake Job Postings</h1>
+    <p>Enter a job URL and check whether it is real or fake using AI</p>
+
+    <!-- ✅ Form with loading trigger -->
+    <form action="/predict" method="POST" onsubmit="showLoading()">
+        <input type="text" name="jobtext" placeholder="Enter Job URL here..." required>
+        <br>
+        <button type="submit">Analyze Job</button>
+    </form>
+
+    <!-- 🔥 Loading UI -->
+    <div id="loading">
+        <div class="spinner"></div>
+        <p>Analyzing job... 🤖</p>
+    </div>
+
+</div>
+
+<div class="features">
+
+    <div class="card">
+        <h3>⚡ Fast Analysis</h3>
+        <p>Instant detection using deep learning</p>
+    </div>
+
+    <div class="card">
+    <h3>🛡 Fraud Detection</h3>
+    <p>Analyzes job postings to identify fake listings</p>
+</div>
+    <div class="card">
+        <h3>🔍 Accurate Results</h3>
+        <p>Classifies jobs as Real or Fake</p>
+    </div>
+
+</div>
+
+<script>
+function showLoading() {
+    document.getElementById("loading").style.display = "block";
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Result - Fake Job Detector</title>
+
+<style>
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #3d546e;
+    color: white;
+    text-align: center;
+}
+
+/* Navbar */
+.navbar {
+    padding: 15px;
+    font-size: 22px;
+    font-weight: bold;
+    background: #0d1b2a;
+}
+
+/* Container */
+.container {
+    margin-top: 60px;
+}
+
+/* Result Box */
+.result-box {
+    background: rgba(73, 72, 85, 0.581);
+    padding: 30px;
+    border-radius: 15px;
+    width: 500px;
+    margin: auto;
+}
+
+/* Result text */
+.result {
+    font-size: 50px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+/* Colors */
+.real {
+    color: #00ff88b4;
+
+}
+
+.fake {
+    color: #ff4d4d;
+}
+
+/* Confidence */
+.confidence {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+/* Progress Bar */
+.bar {
+    width: 100%;
+    background: #444;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.fill {
+    height: 10px;
+    border-radius: 10px;
+    width: 0%;
+    transition: width 0.6s ease;
+}
+
+/* Reason Box */
+.reason-box {
+    background: rgba(0,0,0,0.3);
+    padding: 15px;
+    border-radius: 10px;
+    text-align: left;
+}
+
+/* Preview */
+.preview {
+    margin-top: 20px;
+    text-align: left;
+    background: rgba(255,255,255,0.05);
+    padding: 15px;
+    border-radius: 10px;
+    max-height: 200px;
+    overflow-y: auto;
+    line-height: 1.6;
+}
+
+/* Button */
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #00c6ff;
+    border: none;
+    border-radius: 8px;
+    color: black;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #009ac7;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="navbar">
+    Fake Job Detector 🚀
+</div>
+
+<div class="container">
+
+    <div class="result-box">
+
+        <!-- ✅ Result -->
+        <div class="result 
+            {% if 'Real' in result %} real 
+            {% elif 'Fake' in result %} fake 
+            {% endif %}">
+            {{ result }}
+        </div>
+
+        <!-- ✅ Confidence -->
+        <div class="confidence">
+            Confidence: {{ confidence }}%
+        </div>
+
+        <!-- ✅ Progress Bar (FIXED 🔥) -->
+        <div class="bar">
+            <div class="fill"style="width: {{ confidence|float }}%;
+                 background: {% if 'Fake' in result %}#ff4d4d{% else %}#00ff88{% endif %};">
+            </div>
+        </div>
+
+        <!-- ✅ Reasons -->
+        <div class="reason-box">
+            <h3>⚠ Reasons</h3>
+        
+               {% if reason is string %}
+    <p>{{ reason }}</p>
+{% else %}
+    <p>
+    {% for r in reason %}
+        {{ r }}<br>
+    {% endfor %}
+    </p>
+{% endif %}
+        
+        </div>
+
+        <!-- ✅ Job Preview -->
+        <div class="preview">
+    <h3>📄 Job Details</h3>
+
+    <p><b>💼 Job Role:</b> {{ job_title }}</p>
+    <p><b>🏢 Company:</b> {{ company  }}</p>
+    <p><b>🔗 URL:</b> 
+        <a href="{{ job_url }}" target="_blank" style="color:#00c6ff;">
+            {{ job_url }}
+        </a>
+    </p>
+</div>
+
+        <!-- Back Button -->
+        <a href="/">
+            <button>🔙 Check Another Job</button>
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>
